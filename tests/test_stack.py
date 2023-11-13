@@ -36,6 +36,26 @@ def test_stack_init(stack1):
 
 
 def test_stack_push(stack1, node1, node2):
+    assert stack1.top == None
+    stack1.push(node1)
+    assert stack1.top == node1
+    stack1.push(node2)
+    assert stack1.top == node2
+
+def test_stack_pop(stack1,node1,node2):
+    assert stack1.pop() == None
+    stack1.push('data1')
+    data = stack1.pop()
+    assert stack1.top is None
+    assert data == 'data1'
+    # assert stack1 == []
+    stack1.push('data1')
+    stack1.push('data2')
+    data = stack1.pop()
+    assert stack1.top.data == 'data1'
+    assert data == 'data2'
     stack1.push(node1)
     stack1.push(node2)
-    # assert stack1 == None
+    data = stack1.pop()
+    assert stack1.top.data == 5
+    assert data == 'a'
