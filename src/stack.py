@@ -2,7 +2,7 @@ class Node:
     """Класс для узла стека"""
 
 
-    def __init__(self, data, next_node):
+    def __init__(self, data, next_node=None):
         """
         Конструктор класса Node
 
@@ -47,3 +47,9 @@ class Stack:
             return popped_data
         else:
             return None
+
+
+    def __str__(self):
+        if self.top:
+            return f"{self.top.data}"
+        return ""

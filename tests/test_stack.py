@@ -4,22 +4,16 @@ from src.stack import Node, Stack
 
 
 @pytest.fixture
-
-
 def node1():
     return Node(5, None)
 
 
 @pytest.fixture
-
-
 def node2(node1):
     return Node('a', node1)
 
 
 @pytest.fixture
-
-
 def stack1():
     return Stack()
 
@@ -59,3 +53,11 @@ def test_stack_pop(stack1,node1,node2):
     data = stack1.pop()
     assert stack1.top.data == 5
     assert data == 'a'
+
+
+def test_stack_str(stack1, node1, node2):
+    assert str(stack1) == ''
+    stack1.push(node1)
+    assert str(stack1) == '5'
+    stack1.push(node2)
+    assert str(stack1) == 'a'
