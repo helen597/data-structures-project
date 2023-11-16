@@ -32,7 +32,7 @@ def test_node_init(node1, node2):
 
 
 def test_stack_init(stack1):
-    assert stack1.stack == []
+    assert stack1.top == None
 
 
 def test_stack_push(stack1, node1, node2):
