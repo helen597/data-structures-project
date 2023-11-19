@@ -34,12 +34,13 @@ def test_queue_init(queue1):
     assert queue1.head == None
 
 
-def test_queue_enqueue(queue1, node1, node2, node3):
+def test_queue_enqueue(queue1):
     queue1.enqueue('data1')
     queue1.enqueue('data2')
     queue1.enqueue('data3')
     assert queue1.head.data == 'data1'
     assert queue1.head.next_node.data == 'data2'
+    assert queue1.head.next_node.next_node.data == 'data3'
     assert queue1.tail.data == 'data3'
     assert queue1.tail.next_node is None
     with pytest.raises(AttributeError):
@@ -52,3 +53,23 @@ def test_queue_str(queue1):
     queue1.enqueue('data2')
     queue1.enqueue('data3')
     assert str(queue1) == "data1\ndata2\ndata3"
+
+
+def test_queue_dequeue(queue1):
+    assert queue1.dequeue() == None
+    queue1.enqueue('data1')
+    assert queue1.dequeue() == 'data1'
+    queue1.enqueue('data1')
+    queue1.enqueue('data2')
+    assert queue1.dequeue() == 'data1'
+    assert queue1.dequeue() == 'data2'
+    queue1.enqueue('data1')
+    queue1.enqueue('data2')
+    queue1.enqueue('data3')
+    assert queue1.dequeue() == 'data1'
+    assert queue1.head.data == 'data2'
+    assert queue1.head.next_node.data == 'data3'
+    assert queue1.tail.data == 'data3'
+    assert queue1.dequeue() == 'data2'
+    assert queue1.dequeue() == 'data3'
+    assert queue1.dequeue() == None

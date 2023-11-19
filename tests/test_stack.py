@@ -14,6 +14,11 @@ def node2(node1):
 
 
 @pytest.fixture
+def node3():
+    return Node('data3')
+
+
+@pytest.fixture
 def stack1():
     return Stack()
 
@@ -55,9 +60,11 @@ def test_stack_pop(stack1,node1,node2):
     assert data == 'a'
 
 
-def test_stack_str(stack1, node1, node2):
+def test_stack_str(stack1, node1, node2, node3):
     assert str(stack1) == ''
     stack1.push(node1)
-    assert str(stack1) == '5'
+    assert str(stack1) == 'Стэк:\n5'
     stack1.push(node2)
-    assert str(stack1) == 'a'
+    assert str(stack1) == 'Стэк:\na\n5'
+    stack1.push(node3)
+    assert str(stack1) == 'Стэк:\ndata3\na\n5'

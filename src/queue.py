@@ -28,15 +28,12 @@ class Queue:
 
         :param data: данные, которые будут добавлены в очередь
         """
-        if isinstance(data, Node):
-            self.tail = data
-        else:
-            new_node = Node(data, None)
-            if self.tail:
-                self.tail.next_node = new_node
-            self.tail = new_node
-            if not self.head:
-                self.head = new_node
+        new_node = Node(data, None)
+        if self.tail:
+            self.tail.next_node = new_node
+        self.tail = new_node
+        if not self.head:
+            self.head = new_node
 
 
     def dequeue(self):
@@ -45,7 +42,12 @@ class Queue:
 
         :return: данные удаленного элемента
         """
-        pass
+        if self.head:
+            popped_data = self.head.data
+            self.head = self.head.next_node
+            return popped_data
+        else:
+            return None
 
 
     def __str__(self):
@@ -56,7 +58,7 @@ class Queue:
         if self.head.next_node:
             new_node = self.head.next_node
             str1 += ('\n' + new_node.data)
-        while new_node.next_node:
-            new_node = new_node.next_node
-            str1 += ('\n' + new_node.data)
+            while new_node.next_node:
+                new_node = new_node.next_node
+                str1 += ('\n' + new_node.data)
         return str1

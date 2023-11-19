@@ -29,6 +29,7 @@ class Stack:
         :param data: данные, которые будут добавлены на вершину стека
         """
         if isinstance(data, Node):
+            data.next_node = self.top
             self.top = data
         else:
             new_node = Node(data, self.top)
@@ -50,6 +51,14 @@ class Stack:
 
 
     def __str__(self):
-        if self.top:
-            return f"{self.top.data}"
-        return ""
+        """Магический метод для строкового представления объекта"""
+        if not self.top:
+            return ""
+        str1 = self.top.data
+        if self.top.next_node:
+            new_node = self.top.next_node
+            str1 += ('\n' + str(new_node.data))
+            while new_node.next_node:
+                new_node = new_node.next_node
+                str1 += ('\n' + str(new_node.data))
+        return f"Стэк:\n{str1}"
