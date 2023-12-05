@@ -59,10 +59,10 @@ class LinkedList:
 
 
     def get_data_by_id(self, id):
-        try:
-            new_list = self.to_list()
-            for item in new_list:
+        new_list = self.to_list()
+        for item in new_list:
+            try:
                 if item['id'] == id:
                     return item
-        except TypeError:
-            print("Данные не являются словарем или в словаре нет id")
+            except TypeError:
+                print("Данные не являются словарем или в словаре нет id")
